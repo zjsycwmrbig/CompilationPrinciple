@@ -1,0 +1,8 @@
+1 CHARCON: ,'abc'
+2 CHARCON: ,'\''
+3 CHARCON: ,L'1'
+4 CHARCON: ,u'\\'
+5 CHARCON: ,U'\010'
+6 CHARCON: ,'\x210'
+7 CHARCON: ,'\010'
+8 CHARCON: ,'\11'

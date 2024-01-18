@@ -1,0 +1,48 @@
+ /* JavaCC 小测试 */
+ /* 功能：实现一个能够进行加法(+)，减法(-)，乘方(^)的计算器 */
+ /* 说明：在下面的begin和end之间添加代码，已经实现了简单的加法(+)，你需要完成剩下的部分，加油吧！ */
+ /* 提示： */
+ 
+options {
+	STATIC = false;
+}
+
+PARSER_BEGIN(Calc)
+import java.io.*;
+
+class Calc {
+	public static void main(String[] args) {
+		for (String arg : args) {
+			try {
+				System.out.println(evaluate(arg));
+			} catch (ParseException ex) {
+				System.err.println(ex.getMessage());
+			}
+		}
+	}
+
+	public static long evaluate(String src) throws ParseException {
+		Reader reader = new StringReader(src);
+		return new Calc(reader).expr();
+	}
+}
+PARSER_END(Calc)
+ /* begin */
+SKIP: { <[" ", "\t", "\r", "\n"]> }
+
+TOKEN: {
+	<INTEGER: (["0"-"9"])+>
+}
+
+long expr():
+{
+	Token x, y;
+}
+{
+	x=<INTEGER> "+" y=<INTEGER> <EOF>
+	{
+		return Long.parseLong(x.image) + Long.parseLong(y.image);
+	}
+    
+}
+ /* end */
